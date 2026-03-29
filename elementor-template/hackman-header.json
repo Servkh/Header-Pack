@@ -1,0 +1,102 @@
+{
+  "version": "0.4",
+  "title": "Hackman Sticky Header",
+  "type": "page",
+  "content": [
+    {
+      "id": "hsh-section",
+      "elType": "section",
+      "settings": {
+        "stretch_section": "section-stretched",
+        "gap": "no",
+        "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#6b1a1a",
+        "css_classes": "hsh-header",
+        "z_index": 9999,
+        "_element_id": "hsh-header-section"
+      },
+      "elements": [
+        {
+          "id": "hsh-col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "middle"
+          },
+          "elements": [
+            {
+              "id": "hsh-inner-section",
+              "elType": "section",
+              "settings": {
+                "layout": "full_width",
+                "gap": "no",
+                "padding": { "unit": "px", "top": "0", "right": "40", "bottom": "0", "left": "40", "isLinked": false },
+                "content_position": "middle",
+                "min_height": { "unit": "px", "size": 72 }
+              },
+              "elements": [
+                {
+                  "id": "hsh-logo-col",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 20,
+                    "content_position": "middle"
+                  },
+                  "elements": [
+                    {
+                      "id": "hsh-logo-html",
+                      "elType": "widget",
+                      "widgetType": "html",
+                      "settings": {
+                        "html": "<a href=\"/\" class=\"hsh-logo\" aria-label=\"Hackman Paving Inc\">\n  <svg class=\"hsh-logo-icon\" viewBox=\"0 0 48 56\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n    <rect width=\"48\" height=\"56\" rx=\"2\" fill=\"rgba(255,255,255,0.15)\"/>\n    <text x=\"50%\" y=\"54%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Arial,sans-serif\" font-weight=\"900\" font-size=\"28\" fill=\"#ffffff\">H</text>\n  </svg>\n  <div class=\"hsh-logo-text\">\n    <span class=\"hsh-logo-company\">HACKMAN</span>\n    <span class=\"hsh-logo-tagline\">PAVING, INC.</span>\n  </div>\n</a>"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "hsh-nav-col",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 60,
+                    "content_position": "middle",
+                    "align": "center"
+                  },
+                  "elements": [
+                    {
+                      "id": "hsh-nav-html",
+                      "elType": "widget",
+                      "widgetType": "html",
+                      "settings": {
+                        "html": "<nav class=\"hsh-nav-wrap\" aria-label=\"Primary Navigation\">\n  <button class=\"hsh-mobile-toggle\" aria-expanded=\"false\" aria-label=\"Toggle menu\">\n    <span></span><span></span><span></span>\n  </button>\n  <ul class=\"hsh-nav\">\n    <li class=\"menu-item\"><a href=\"/\">Home</a></li>\n    <li class=\"menu-item\"><a href=\"/about\">About</a></li>\n    <li class=\"menu-item hsh-has-dropdown\">\n      <a href=\"/services\" aria-haspopup=\"true\" aria-expanded=\"false\">\n        Services\n        <span class=\"hsh-arrow\" aria-hidden=\"true\">\n          <svg viewBox=\"0 0 10 6\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 0l5 6 5-6z\"/></svg>\n        </span>\n      </a>\n      <ul class=\"hsh-dropdown\" role=\"menu\">\n        <li><a href=\"/services/paving\">Paving</a></li>\n        <li><a href=\"/services/sealcoating\">Sealcoating</a></li>\n        <li><a href=\"/services/repairs\">Repairs</a></li>\n      </ul>\n    </li>\n    <li class=\"menu-item\"><a href=\"/gallery\">Gallery</a></li>\n    <li class=\"menu-item\"><a href=\"/faqs\">FAQs</a></li>\n    <li class=\"menu-item hsh-has-dropdown\">\n      <a href=\"/contact\" aria-haspopup=\"true\" aria-expanded=\"false\">\n        Contact\n        <span class=\"hsh-arrow\" aria-hidden=\"true\">\n          <svg viewBox=\"0 0 10 6\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 0l5 6 5-6z\"/></svg>\n        </span>\n      </a>\n      <ul class=\"hsh-dropdown\" role=\"menu\">\n        <li><a href=\"/contact\">Contact Us</a></li>\n        <li><a href=\"/locations\">Locations</a></li>\n      </ul>\n    </li>\n  </ul>\n</nav>"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "hsh-cta-col",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 20,
+                    "content_position": "middle",
+                    "align": "right"
+                  },
+                  "elements": [
+                    {
+                      "id": "hsh-cta-html",
+                      "elType": "widget",
+                      "widgetType": "html",
+                      "settings": {
+                        "html": "<a href=\"/contact\" class=\"hsh-cta\">Free Estimate</a>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

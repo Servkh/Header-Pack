@@ -1,10 +1,10 @@
 /* ==========================================================================
    Hackman Sticky Header — front-end styles
-   Works both with the Hackman Header widget and with any Elementor
-   section / container that carries the .hsh-header class.
+   Add via: Elementor > Site Settings > Custom CSS
+         or: your theme/child-theme style.css
    ========================================================================== */
 
-/* ── Custom properties (easy theming) ──────────────────────────────────── */
+/* ── Custom properties ──────────────────────────────────────────────────── */
 :root {
   --hsh-bg:           #6b1a1a;
   --hsh-text:         #ffffff;
@@ -15,46 +15,41 @@
   --hsh-dropdown-bg:  #4a1010;
   --hsh-height:       72px;
   --hsh-z:            9999;
-  --hsh-speed:        0.3s;
+  --hsh-speed:        300ms;
   --hsh-font:         'Arial', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 /* ── Sticky wrapper ─────────────────────────────────────────────────────── */
 
 /*
- * .hsh-header is applied to the outermost Elementor section/container.
- * When the JS activates sticky mode it adds .hsh-sticky; when the header
- * should be hidden it adds .hsh-hidden.
+ * Add the CSS class  hsh-header  to your Elementor section:
+ * Advanced tab → CSS Classes → hsh-header
  */
 
-.hsh-header,
-.hsh-widget-header {
+.hsh-header {
   position: relative;
   width: 100%;
   z-index: var(--hsh-z);
   background-color: var(--hsh-bg);
-  transition: transform var(--hsh-speed) ease, box-shadow var(--hsh-speed) ease;
+  transition: transform var(--hsh-speed) ease,
+              box-shadow var(--hsh-speed) ease;
 }
 
-/* Sticky state — injected by JS after user scrolls past threshold */
-.hsh-header.hsh-sticky,
-.hsh-widget-header.hsh-sticky {
+.hsh-header.hsh-sticky {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   transform: translateY(0);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
   will-change: transform;
 }
 
-/* Hidden while scrolling down */
-.hsh-header.hsh-sticky.hsh-hidden,
-.hsh-widget-header.hsh-sticky.hsh-hidden {
+.hsh-header.hsh-sticky.hsh-hidden {
   transform: translateY(-110%);
 }
 
-/* Push page content down when header is sticky so nothing is obscured */
+/* Prevent content jump when sticky activates */
 body.hsh-offset-active {
   padding-top: var(--hsh-height);
 }
@@ -82,7 +77,7 @@ body.hsh-offset-active {
   flex-shrink: 0;
 }
 
-.hsh-logo-img {
+.hsh-logo img {
   height: 48px;
   width: auto;
   display: block;
@@ -120,7 +115,7 @@ body.hsh-offset-active {
   opacity: 0.9;
 }
 
-/* ── Navigation wrapper ─────────────────────────────────────────────────── */
+/* ── Navigation ─────────────────────────────────────────────────────────── */
 
 .hsh-nav-wrap {
   display: flex;
@@ -129,15 +124,12 @@ body.hsh-offset-active {
   justify-content: center;
 }
 
-/* ── Primary nav list ───────────────────────────────────────────────────── */
-
 .hsh-nav {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
-  gap: 0;
 }
 
 .hsh-nav > li {
@@ -168,8 +160,7 @@ body.hsh-offset-active {
   color: var(--hsh-hover);
 }
 
-/* ── Dropdown arrow icon ────────────────────────────────────────────────── */
-
+/* Dropdown arrow */
 .hsh-arrow {
   display: inline-flex;
   align-items: center;
@@ -183,32 +174,30 @@ body.hsh-offset-active {
   transition: fill 0.2s ease;
 }
 
-.hsh-nav > li > a:hover .hsh-arrow svg,
-.hsh-nav > li.current-menu-item > a .hsh-arrow svg {
+.hsh-nav > li > a:hover .hsh-arrow svg {
   fill: var(--hsh-hover);
 }
 
-/* Rotate arrow when dropdown is open */
 .hsh-nav > li.hsh-open > a .hsh-arrow {
   transform: rotate(180deg);
 }
 
-/* ── Dropdown menu ──────────────────────────────────────────────────────── */
+/* ── Dropdown ───────────────────────────────────────────────────────────── */
 
 .hsh-dropdown {
   list-style: none;
   margin: 0;
   padding: 8px 0;
   position: absolute;
-  top: calc(100% - 2px);
+  top: 100%;
   left: 0;
-  min-width: 180px;
+  min-width: 190px;
   background-color: var(--hsh-dropdown-bg);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-6px);
-  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s 0.22s;
   z-index: calc(var(--hsh-z) + 1);
   border-top: 2px solid rgba(255, 255, 255, 0.1);
 }
@@ -218,12 +207,10 @@ body.hsh-offset-active {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0s;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s 0s;
 }
 
-.hsh-dropdown li {
-  display: block;
-}
+.hsh-dropdown li { display: block; }
 
 .hsh-dropdown a {
   display: block;
@@ -235,7 +222,7 @@ body.hsh-offset-active {
   text-transform: uppercase;
   color: var(--hsh-text);
   text-decoration: none;
-  transition: color 0.18s ease, background-color 0.18s ease;
+  transition: color 0.18s, background-color 0.18s;
   white-space: nowrap;
 }
 
@@ -253,23 +240,21 @@ body.hsh-offset-active {
   flex-shrink: 0;
   padding: 14px 28px;
   background-color: var(--hsh-cta-bg);
-  color: var(--hsh-cta-text);
+  color: var(--hsh-cta-text) !important;
   font-family: var(--hsh-font);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  text-decoration: none;
+  text-decoration: none !important;
   cursor: pointer;
   border: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease;
   white-space: nowrap;
 }
 
 .hsh-cta:hover {
   background-color: var(--hsh-cta-hover-bg);
-  color: var(--hsh-cta-text);
-  text-decoration: none;
 }
 
 /* ── Mobile toggle ──────────────────────────────────────────────────────── */
@@ -286,7 +271,7 @@ body.hsh-offset-active {
   border: none;
   cursor: pointer;
   margin-left: auto;
-  margin-right: 12px;
+  margin-right: 8px;
 }
 
 .hsh-mobile-toggle span {
@@ -297,118 +282,76 @@ body.hsh-offset-active {
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-.hsh-mobile-toggle[aria-expanded="true"] span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-.hsh-mobile-toggle[aria-expanded="true"] span:nth-child(2) {
-  opacity: 0;
-}
-.hsh-mobile-toggle[aria-expanded="true"] span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
+.hsh-mobile-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hsh-mobile-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.hsh-mobile-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 
 @media (max-width: 1024px) {
-  .hsh-inner {
-    padding: 0 24px;
-  }
-  .hsh-nav > li > a {
-    padding: 0 12px;
-    font-size: 12px;
-  }
+  .hsh-inner { padding: 0 24px; }
+  .hsh-nav > li > a { padding: 0 12px; font-size: 12px; }
 }
 
 @media (max-width: 768px) {
-  :root {
-    --hsh-height: 60px;
-  }
+  :root { --hsh-height: 60px; }
 
-  .hsh-mobile-toggle {
-    display: flex;
-  }
+  .hsh-mobile-toggle { display: flex; }
 
-  .hsh-inner {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 0;
-  }
+  .hsh-inner { flex-wrap: wrap; height: auto; padding: 0; }
 
-  /* Top row: logo + toggle */
-  .hsh-logo {
-    padding: 10px 16px;
-  }
+  .hsh-logo { padding: 10px 16px; }
 
-  .hsh-cta {
-    padding: 10px 20px;
-    font-size: 12px;
-    margin-right: 4px;
-  }
+  .hsh-cta { padding: 10px 20px; font-size: 12px; margin-right: 4px; }
 
-  /* Nav and CTA live below the top row */
   .hsh-nav-wrap {
     order: 3;
     width: 100%;
     justify-content: flex-start;
-    /* Hidden until toggle is pressed */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.35s ease;
   }
 
-  .hsh-nav-wrap.hsh-mobile-open {
-    max-height: 600px;
-  }
+  .hsh-nav-wrap.hsh-mobile-open { max-height: 600px; }
 
   .hsh-nav {
     flex-direction: column;
     width: 100%;
-    gap: 0;
     align-items: flex-start;
     padding-bottom: 12px;
   }
 
-  .hsh-nav > li {
-    width: 100%;
-  }
+  .hsh-nav > li { width: 100%; }
 
   .hsh-nav > li > a {
     height: auto;
     padding: 12px 20px;
     width: 100%;
     box-sizing: border-box;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  /* Mobile dropdown */
   .hsh-dropdown {
     position: static;
     box-shadow: none;
     opacity: 1;
     visibility: visible;
     transform: none;
-    transition: none;
-    max-height: 0;
-    overflow: hidden;
     padding: 0;
     border-top: none;
+    max-height: 0;
+    overflow: hidden;
     transition: max-height 0.3s ease;
   }
 
-  .hsh-nav > li.hsh-open > .hsh-dropdown {
-    max-height: 400px;
-  }
+  .hsh-nav > li.hsh-open > .hsh-dropdown { max-height: 400px; }
 
-  .hsh-dropdown a {
-    padding-left: 36px;
-  }
+  .hsh-dropdown a { padding-left: 36px; }
 }
 
-/* ── Elementor editor helpers ───────────────────────────────────────────── */
-
-/* Disable sticky transform inside editor so layout is predictable */
-.elementor-editor-active .hsh-header,
-.elementor-editor-active .hsh-widget-header {
+/* ── Elementor editor: disable sticky so layout is predictable ─────────── */
+.elementor-editor-active .hsh-header {
   position: relative !important;
   transform: none !important;
   box-shadow: none !important;
